@@ -14,10 +14,11 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+    working_directory: ~/portal-project
 
     steps:
       - checkout
+      - run: yarn
 
       # Download and cache dependencies
       - restore_cache:
@@ -26,7 +27,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn install
+      - run: yarn
 
       - save_cache:
           paths:
@@ -36,6 +37,6 @@ jobs:
           name: Deploy Master to Firebase
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              firebase use master
-              firebase deploy --token=$FIREBASE_TOKEN --non-interactive
+              ./node_modules/.bin/firebase use master
+              ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
             fi
