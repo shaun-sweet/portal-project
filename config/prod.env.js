@@ -8,6 +8,6 @@ let firebaseConfig = {
   messagingSenderId: `"${process.env.FIREBASE_MESSAGING_SENDER_ID}"`
 }
 module.exports = {
-  NODE_ENV: 'production',
+  NODE_ENV: '"production"',
   firebaseConfig: firebaseConfig
 }
