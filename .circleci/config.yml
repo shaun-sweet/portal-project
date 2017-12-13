@@ -32,11 +32,14 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn run build
+      - run: yarn add firebase-tools
       - deploy:
           name: Deploy Master to Firebase
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              yarn add firebase-tools
-              yarn run build
+              pushd . && cd functions/
+              yarn
+              popd
               ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
             fi
