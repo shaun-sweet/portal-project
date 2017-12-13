@@ -36,6 +36,7 @@ jobs:
           name: Deploy Master to Firebase
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              yarn add firebase
               ls -als ./node_modules/.bin/
               ./node_modules/.bin/firebase use master
               ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
