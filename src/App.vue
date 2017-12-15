@@ -1,14 +1,23 @@
-<template lang='pug'>
-  HomeC(test='hello :)')
+<template lang="html">
+  <main>
+    <p></p>
+  <home-c test='WELCOME'>
+  <button class="button">Click to disable</button>
+
+  </home-c>
+  <button>Test</button>
+  </main>
 </template>
 
 <script>
-import HomeC from '@/components/Home'
+import HomeC from '@/components/Home.vue'
+
 import { db } from '@/firebase'
+
 export default {
   name: 'app',
   components: {
-    HomeC
+    HomeC,
   },
   mounted () {
     db
@@ -16,7 +25,7 @@ export default {
       .add({
         first: 'Ada',
         last: 'Lovelace',
-        born: 1815
+        born: 1815,
       })
       .then(docRef => {
         console.log('Document written with ID: ', docRef.id)
@@ -24,6 +33,6 @@ export default {
       .catch(error => {
         console.error('Error adding document: ', error)
       })
-  }
+  },
 }
 </script>
