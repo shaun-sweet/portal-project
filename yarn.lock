@@ -154,6 +154,12 @@
     mkdirp "^0.5.1"
     rimraf "^2.5.2"
 
+"@ssweet/html@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@ssweet/html/-/html-2.0.0.tgz#e757fe7061f52fac7db8a79cfcce4173e8494b56"
+  dependencies:
+    concat-stream "^1.4.7"
+
 JSONStream@^1.0.4:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/JSONStream/-/JSONStream-1.3.1.tgz#707f761e01dae9e16f1bcf93703b78c70966579a"
@@ -1675,7 +1681,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@1.6.0, concat-stream@^1.6.0:
+concat-stream@1.6.0, concat-stream@^1.4.7, concat-stream@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
   dependencies:
