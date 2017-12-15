@@ -16,6 +16,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "firebase": "^4.8.0",
     "firebaseui": "^2.5.1",
     "vue": "^2.5.2",
