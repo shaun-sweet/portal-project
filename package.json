@@ -24,6 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "^5.2.5",
     "@commitlint/config-angular": "^5.1.1",
+    "@commitlint/config-conventional": "^5.2.3",
     "autoprefixer": "^7.1.5",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
@@ -108,7 +109,7 @@
   ],
   "commitlint": {
     "extends": [
-      "@commitlint/config-angular"
+      "@commitlint/config-conventional"
     ]
   }
 }

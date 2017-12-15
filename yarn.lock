@@ -76,6 +76,10 @@
   dependencies:
     "@commitlint/config-angular-type-enum" "^5.1.1"
 
+"@commitlint/config-conventional@^5.2.3":
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-5.2.3.tgz#63671b32b65cb68e7b238405403194b558ff559a"
+
 "@commitlint/core@^5.2.5":
   version "5.2.5"
   resolved "https://registry.yarnpkg.com/@commitlint/core/-/core-5.2.5.tgz#e4be2730652f051d30e245ce16ac037a775750b6"
