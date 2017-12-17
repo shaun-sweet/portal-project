@@ -11,7 +11,6 @@
 
 <script>
 import HomeC from '@/components/Home.vue'
-
 import { db } from '@/firebase'
 
 export default {
