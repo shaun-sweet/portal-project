@@ -1,10 +1,10 @@
 <template lang="html">
   <main>
     <p></p>
-  <home-c test='WELCOME'>
+  <HomeC test='WELCOME'>
   <button class="button">Click to disable</button>
 
-  </home-c>
+  </HomeC>
   <button>Test</button>
   </main>
 </template>
