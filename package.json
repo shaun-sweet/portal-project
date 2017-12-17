@@ -15,8 +15,8 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.{vue,js}": ["html", "eslint --fix", "git add"],
-    "*.js": ["eslint --fix", "git add"]
+    "*.js": ["eslint --fix", "git add"],
+    "*.vue": ["html", "eslint --fix", "git add"]
   },
   "dependencies": {
     "bulma": "^0.6.1",
