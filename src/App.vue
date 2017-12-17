@@ -34,3 +34,8 @@ export default {
   },
 }
 </script>
+
+<style lang="sass">
+.sup
+  color: red
+</style>
