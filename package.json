@@ -12,8 +12,11 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "lint": "html ./src/**/*.vue && eslint --ext js,vue ./src --fix",
-    "precommit": "npm run lint"
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{vue,js}": ["html", "eslint --fix", "git add"],
+    "*.js": ["eslint --fix", "git add"]
   },
   "dependencies": {
     "bulma": "^0.6.1",
@@ -27,7 +30,7 @@
     "@commitlint/cli": "^5.2.5",
     "@commitlint/config-angular": "^5.1.1",
     "@commitlint/config-conventional": "^5.2.3",
-    "@ssweet/html": "^2.0.0",
+    "@ssweet/html": "^2.2.0",
     "autoprefixer": "^7.1.5",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
@@ -73,6 +76,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.31",
     "karma-webpack": "^2.0.5",
+    "lint-staged": "^6.0.0",
     "mocha": "^4.0.1",
     "nightwatch": "^0.9.16",
     "node-sass": "^4.7.2",

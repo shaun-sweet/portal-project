@@ -1,14 +1,11 @@
 <template lang="html">
-
   <div>
-    <body>
-       <h1>herro :)</h1>
-
-      <p>this is a test</p> <a href="">herro</a>
-
-    </body>
+    <h1>herro :)</h1>
+    <p>this is a test
+      <a href="">herro</a>
+    </p>
+    <a href="">herro</a>
   </div>
-
 </template>
 
 <script>
