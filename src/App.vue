@@ -1,19 +1,10 @@
-
-
-
 <template lang="html">
   <main>
     <p></p>
-            <home-c test='WELCOME'>
-  <button class="button">Click to disable</button>
-
-  </home-c>
-
-
-
-
-
-  <button>Testing this again yay it works that is great</button>
+    <home-c test='WELCOME'>
+      <button class="button">Click to disable</button>
+    </home-c>
+    <button>Testing this again yay it works that is great</button>
   </main>
 </template>
 
