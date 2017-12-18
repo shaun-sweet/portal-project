@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './containers/App'
+import store from './store'
 import router from '@/router'
 import { Firestore, Auth } from '@/firebase'
 // import 'firebaseui/dist/firebaseui.css'
@@ -15,5 +16,6 @@ Vue.use(Auth)
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App),
 })
