@@ -1,39 +1,34 @@
 <template lang="html">
-  <main>
-    <p></p>
-    <button class="button" @click="login()">Click to disable</button>
-    <button>Testing</button>
-    <router-view></router-view>
-  </main>
+  <div class="app-wrapper">
+    <Header />
+    <main id="main">
+      <router-view />
+    </main>
+    <Footer />
+  </div>
 </template>
 
 <script>
+import Header from '@/containers/Header'
+import Footer from '@/containers/Footer'
+
 export default {
   name: 'app',
-  mounted () {
-    this.$firestore
-      .collection('users')
-      .add({
-        first: 'Ada',
-        last: 'Lovelace',
-        born: 1815,
-      })
-      .then(docRef => {
-        console.log('Document written with ID: ', docRef.id)
-      })
-      .catch(error => {
-        console.error('Error adding document: ', error)
-      })
-  },
-  methods: {
-    login () {
-      this.$router.push('/login')
-    },
+  components: {
+    Header,
+    Footer,
   },
 }
 </script>
 
 <style lang="sass">
-.sup
-  color: red
+.app-wrapper
+  display: flex
+  flex-flow: column
+  height: 100%
+
+#main
+  display: flex
+  flex: 1
+  justify-content: center
 </style>
