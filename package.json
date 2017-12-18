@@ -30,7 +30,8 @@
     "firebase": "^4.8.0",
     "firebaseui": "^2.5.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^5.2.5",
