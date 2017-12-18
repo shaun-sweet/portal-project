@@ -1,24 +1,17 @@
 <template lang="html">
   <main>
     <p></p>
-    <home-c test='WELCOME'>
-      <button class="button">Click to disable</button>
-    </home-c>
-    <button>Testing this again yay it works that is great</button>
+    <button class="button" @click="login()">Click to disable</button>
+    <button>Testing</button>
+    <router-view></router-view>
   </main>
 </template>
 
 <script>
-import HomeC from '@/components/Home.vue'
-import { db } from '@/firebase'
-
 export default {
   name: 'app',
-  components: {
-    HomeC,
-  },
   mounted () {
-    db
+    this.$firestore
       .collection('users')
       .add({
         first: 'Ada',
@@ -31,6 +24,11 @@ export default {
       .catch(error => {
         console.error('Error adding document: ', error)
       })
+  },
+  methods: {
+    login () {
+      this.$router.push('/login')
+    },
   },
 }
 </script>
