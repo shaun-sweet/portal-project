@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer should render the Footer correctly 1`] = `
+<footer
+  class="footer"
+>
+  <div
+    class="container"
+  >
+    <div
+      class="content has-text-centered"
+    >
+      
+  This the footer
+    
+    </div>
+  </div>
+</footer>
+`;

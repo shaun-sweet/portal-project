@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render the Header correctly 1`] = `
+<header
+  class="level"
+>
+  <div
+    class="level-left"
+  >
+    
+    this be the header
+  
+  </div>
+</header>
+`;
