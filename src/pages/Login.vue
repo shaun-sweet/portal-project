@@ -4,6 +4,7 @@
     this be a login page
     </p>
     <LoginForm/>
+    <p>Need an account? <router-link to="/signup">Go to Signup</router-link></p>
   </div>
 </template>
 

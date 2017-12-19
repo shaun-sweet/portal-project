@@ -40,7 +40,7 @@
         <button
           class="button is-link"
           v-bind:class="{'is-loading': isLoading}"
-          v-on:click="attemptLogin()"
+          v-on:click="attemptSignupWithPassword()"
         >
           Submit
         </button>
@@ -68,12 +68,8 @@ export default {
     setAvail () {
       this.isEmailAvailable = true
     },
-    attemptLogin () {
-      // this.isLoading = true
-      // setTimeout(() => {
-      //   this.isLoading = false
-      // }, 1000)
-      this.$auth.signInWithEmailAndPassword(this.email, this.password)
+    attemptSignupWithPassword () {
+      this.$auth.createUserWithEmailAndPassword(this.email, this.password)
         .then((user) => {
           console.log(user)
           this.uid = user.uid
