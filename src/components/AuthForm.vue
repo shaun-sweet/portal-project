@@ -7,19 +7,13 @@
         <input
           class="input"
           v-model="email"
-          v-bind:class="{'is-success': isEmailAvailable}"
-          v-on:blur="setAvail()"
           type="text" id="email"
           placeholder="email"
         >
         <span class="icon is-small is-left">
           <i class="fas fa-user"></i>
         </span>
-        <span v-if="isEmailAvailable" class="icon is-small is-right">
-          <i class="fas fa-check"></i>
-        </span>
       </div>
-      <p v-show="isEmailAvailable" class="help is-success">This email is available</p>
     </div>
 
     <div class="field">
@@ -60,14 +54,10 @@ export default {
     return {
       email: '',
       password: '',
-      isEmailAvailable: false,
       isLoading: false,
     }
   },
   methods: {
-    setAvail () {
-      this.isEmailAvailable = true
-    },
     attemptLogin () {
       return this.$auth.signInWithEmailAndPassword(this.email, this.password)
         .then((user) => {
