@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <p>
-    this be a signup page
+    this be a signup page!
     </p>
     <AuthForm :formType="formType"/>
     <p>Already have an account? <router-link to="/login">Go to Login</router-link></p>

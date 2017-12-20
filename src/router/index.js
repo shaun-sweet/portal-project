@@ -37,7 +37,6 @@ let router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(Auth.auth)
   let currentUser = Auth.auth.currentUser
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) {
