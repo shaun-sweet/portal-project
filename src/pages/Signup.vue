@@ -3,16 +3,21 @@
     <p>
     this be a signup page
     </p>
-    <SignupForm/>
+    <AuthForm :formType="formType"/>
     <p>Already have an account? <router-link to="/login">Go to Login</router-link></p>
   </div>
 </template>
 
 <script>
-import SignupForm from '@/components/SignupForm'
+import AuthForm from '@/components/AuthForm'
 export default {
+  data () {
+    return {
+      formType: 'signup',
+    }
+  },
   components: {
-    SignupForm,
+    AuthForm,
   },
 }
 </script>
