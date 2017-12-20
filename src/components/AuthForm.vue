@@ -38,6 +38,20 @@
         >
           Submit
         </button>
+        <button
+          class="button google-auth"
+          v-bind:class="{'is-loading': isLoading}"
+          v-on:click="handleGoogleAuth()"
+        >
+          Sign in with Google
+        </button>
+        <button
+          class="button github-auth"
+          v-bind:class="{'is-loading': isLoading}"
+          v-on:click="handleGithubAuth()"
+        >
+          Sign in with GitHub
+        </button>
       </div>
       <div class="control">
         <button class="button is-text">Cancel</button>
@@ -48,6 +62,8 @@
 </template>
 
 <script>
+import { googleAuthProvider, githubAuthProvider } from '@/firebase'
+
 export default {
   props: ['formType'],
   data () {
@@ -84,9 +100,39 @@ export default {
         this.attemptLogin().then(() => { this.isLoading = false })
       }
     },
+    handleGoogleAuth () {
+      // may turn this into action
+      this.$auth.signInWithPopup(googleAuthProvider)
+        .then((result) => {
+          const user = result.user
+          console.log(user)
+          this.$store.commit('SAVE_CURRENT_USER', user)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    },
+    handleGithubAuth () {
+      // may turn this into action
+      this.$auth.signInWithPopup(githubAuthProvider)
+        .then((result) => {
+          const user = result.user
+          console.log(user)
+          this.$store.commit('SAVE_CURRENT_USER', user)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    },
   },
 }
 </script>
 
 <style lang="sass" scoped>
+  .google-auth
+    background-color: #dd4b39
+    color: #fff
+  .github-auth
+    background-color: #686868
+    color: #fff
 </style>
