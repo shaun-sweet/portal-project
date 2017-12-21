@@ -2,7 +2,9 @@
   <div class="app-wrapper">
     <Header />
     <main id="main">
-      <router-view />
+      <transition name='slide' mode="out-in">
+        <router-view />
+      </transition>
     </main>
     <Footer />
   </div>
@@ -31,4 +33,21 @@ export default {
   display: flex
   flex: 1
   justify-content: center
+
+.slide-enter
+  opacity: 0
+  transform: translateX(-30px)
+
+.slide-enter-active
+  transition: all .5s ease-in-out
+
+.slide-leave
+  opacity: 1
+  transform: translateX(0)
+
+.slide-leave-active
+  opacity: 0
+  transform: translateX(30px)
+  transition: all .5s ease-in-out
+
 </style>
