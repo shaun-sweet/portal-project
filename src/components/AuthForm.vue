@@ -1,18 +1,23 @@
 <template>
   <form>
-
+    <h2>{{ formType.toUpperCase() }}</h2>
+    <div v-if="errorMsg" class="notification is-danger">
+      {{ errorMsg }}
+    </div>
     <div class="field">
       <label class="label" for="email">Email</label>
       <div class="control has-icons-left has-icons-right">
         <input
           class="input"
           v-model="email"
+          v-bind:class="{'is-danger': emailErrorMsg}"
           type="text" id="email"
           placeholder="email"
         >
         <span class="icon is-small is-left">
           <i class="fas fa-user"></i>
         </span>
+        <span class="has-text-danger" v-if="emailErrorMsg">{{ emailErrorMsg }}</span>
       </div>
     </div>
 
@@ -21,11 +26,13 @@
       <div class="control">
         <input
           class="input"
+          v-bind:class="{'is-danger': passwordErrorMsg}"
           v-model="password"
           type="password"
           placeholder="password"
           id="password"
         >
+        <span class="has-text-danger" v-if="passwordErrorMsg">{{ passwordErrorMsg }}</span>
       </div>
     </div>
 
@@ -53,9 +60,9 @@
           Sign in with GitHub
         </button>
       </div>
-      <div class="control">
+      <!-- <div class="control">
         <button class="button is-text">Cancel</button>
-      </div>
+      </div> -->
     </div>
 
   </form>
@@ -71,16 +78,34 @@ export default {
       email: '',
       password: '',
       isLoading: false,
+      emailErrorMsg: '',
+      passwordErrorMsg: '',
+      errorMsg: '',
     }
   },
   methods: {
+    handleError (err) {
+      if (err.code === 'auth/email-already-in-use' || err.code === 'auth/invalid-email') {
+        this.emailErrorMsg = err.message
+      } else if (err.code === 'auth/weak-password') {
+        this.passwordErrorMsg = err.message
+      } else if (err.code === 'auth/popup-closed-by-user') {
+        this.errorMsg = 'You must authenticate before continuing'
+      }
+    },
+    resetErrors () {
+      this.emailErrorMsg = ''
+      this.passwordErrorMsg = ''
+      this.errorMsg = ''
+    },
     attemptLogin () {
       return this.$auth.signInWithEmailAndPassword(this.email, this.password)
         .then((user) => {
           console.log(user)
         })
         .catch((err) => {
-          console.error(err)
+          console.error(err.code, err.message)
+          this.handleError(err)
         })
     },
     attemptSignupWithPassword () {
@@ -89,10 +114,12 @@ export default {
           console.log(user)
         })
         .catch((err) => {
-          console.error(err)
+          console.error(err.code, err.message)
+          this.handleError(err)
         })
     },
     handleSubmit () {
+      this.resetErrors()
       this.isLoading = true
       if (this.formType === 'signup') {
         this.attemptSignupWithPassword().then(() => { this.isLoading = false })
@@ -102,6 +129,7 @@ export default {
     },
     handleGoogleAuth () {
       // may turn this into action
+      this.resetErrors()
       this.$auth.signInWithPopup(googleAuthProvider)
         .then((result) => {
           const user = result.user
@@ -109,11 +137,13 @@ export default {
           this.$store.commit('SAVE_CURRENT_USER', user)
         })
         .catch((err) => {
-          console.error(err)
+          console.error(err.code, err.message)
+          this.handleError(err)
         })
     },
     handleGithubAuth () {
       // may turn this into action
+      this.resetErrors()
       this.$auth.signInWithPopup(githubAuthProvider)
         .then((result) => {
           const user = result.user
@@ -121,7 +151,8 @@ export default {
           this.$store.commit('SAVE_CURRENT_USER', user)
         })
         .catch((err) => {
-          console.error(err)
+          console.error(err.code, err.message)
+          this.handleError(err)
         })
     },
   },
