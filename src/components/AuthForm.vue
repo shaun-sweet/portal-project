@@ -23,7 +23,7 @@
 
     <div class="field">
       <label class="label" for="password">Password</label>
-      <div class="control">
+      <div class="control has-icons-left">
         <input
           class="input"
           v-bind:class="{'is-danger': passwordErrorMsg}"
@@ -32,6 +32,7 @@
           placeholder="password"
           id="password"
         >
+        <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
         <span class="has-text-danger" v-if="passwordErrorMsg">{{ passwordErrorMsg }}</span>
       </div>
     </div>
@@ -39,17 +40,19 @@
     <div class="field is-grouped">
       <div class="control">
         <button
-          class="button is-link"
+          class="button is-link submit-btn"
           v-bind:class="{'is-loading': isLoading}"
           v-on:click="handleSubmit()"
         >
           Submit
         </button>
+        <br />
         <button
           class="button google-auth"
           v-bind:class="{'is-loading': isLoading}"
           v-on:click="handleGoogleAuth()"
         >
+          <i class="fab fa-google-plus-g google-plus-icon"></i>
           Sign in with Google
         </button>
         <button
@@ -57,6 +60,9 @@
           v-bind:class="{'is-loading': isLoading}"
           v-on:click="handleGithubAuth()"
         >
+          <!-- <span class="fa-2x"> -->
+            <i class="github-icon fab fa-github"></i>
+          <!-- </span> -->
           Sign in with GitHub
         </button>
       </div>
@@ -161,10 +167,19 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  .submit-btn
+    margin-bottom: 0.3em
+  .button-container
+    display: flex
+    flex-flow: column
   .google-auth
     background-color: #dd4b39
     color: #fff
   .github-auth
-    background-color: #686868
-    color: #fff
+    // background-color: #686868
+    // color: #fff
+
+  .github-icon, .google-plus-icon
+    margin-right: 0.5em
+    font-size: $auth-form-icon-size
 </style>

@@ -7620,6 +7620,10 @@ vue@^2.5.2:
   version "2.5.11"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.11.tgz#80ca2657aa81f03545cd8dd5a2f55454641e6405"
 
+vuelidate@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/vuelidate/-/vuelidate-0.6.1.tgz#c52c9fd2b48f974613485e2cf51c182e84bcf747"
+
 vuex@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.0.1.tgz#e761352ebe0af537d4bb755a9b9dc4be3df7efd2"
