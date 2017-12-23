@@ -70,6 +70,7 @@
 
 <script>
 import { googleAuthProvider, githubAuthProvider } from '@/firebase'
+import { SAVE_CURRENT_USER } from '@/store/mutation-types'
 
 export default {
   props: ['formType'],
@@ -134,7 +135,7 @@ export default {
         .then((result) => {
           const user = result.user
           console.log(user)
-          this.$store.commit('SAVE_CURRENT_USER', user)
+          this.$store.commit(SAVE_CURRENT_USER, user)
         })
         .catch((err) => {
           console.error(err.code, err.message)
@@ -148,7 +149,7 @@ export default {
         .then((result) => {
           const user = result.user
           console.log(user)
-          this.$store.commit('SAVE_CURRENT_USER', user)
+          this.$store.commit(SAVE_CURRENT_USER, user)
         })
         .catch((err) => {
           console.error(err.code, err.message)
