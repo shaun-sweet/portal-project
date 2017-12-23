@@ -1,11 +1,10 @@
 <template lang="html">
   <header class="level">
-    <div class="level-left">
-      this be the header
-      <router-link to="/signup">Signup</router-link>
-      <router-link to='login'>Login</router-link>
-      <a href="#" v-on:click="logout()">Logout</a>
-    </div>
+    <nav class="level-left">
+      <router-link to="/signup" class="nav-link">Signup</router-link>
+      <router-link to='login' class="nav-link">Login</router-link>
+      <a href="#" v-on:click="logout()" class="nav-link">Logout</a>
+    </nav>
   </header>
 </template>
 
@@ -20,5 +19,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
+.nav-link
+  margin: 0.5em
 </style>
