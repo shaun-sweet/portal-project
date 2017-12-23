@@ -5,14 +5,15 @@ import router from '@/router'
 import { Firestore, Auth } from '@/firebase'
 import { SAVE_CURRENT_USER, RESET_TO_INITIAL_STATE } from '@/store/mutation-types'
 // import 'firebaseui/dist/firebaseui.css'
-import '@/styles/variables.sass'
 import '@/styles/layout.sass'
 import 'bulma/bulma.sass'
+import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
 
 Vue.use(Firestore)
 Vue.use(Auth)
+Vue.use(Vuelidate)
 
 /* eslint-disable no-new */
 let hasRendered = false
