@@ -162,8 +162,6 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-  button span 
-    display: inline-block
   .submit-btn
     margin-bottom: 0.3em
   .button-container
@@ -172,9 +170,6 @@ export default {
   .google-auth
     background-color: #dd4b39
     color: #fff
-  .github-auth
-    // background-color: #686868
-    // color: #fff
 
   .github-icon, .google-plus-icon
     margin-right: 0.5em
