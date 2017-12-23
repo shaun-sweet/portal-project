@@ -4,8 +4,6 @@ export default () => {
       projects: {},
       users: {},
     },
-    appState: {
-      user: {},
-    },
+    user: {},
   }
 }

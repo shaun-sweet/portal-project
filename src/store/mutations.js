@@ -17,7 +17,7 @@ export default {
     refreshToken,
     providerData,
   }) {
-    state.appState.user = {
+    state.user = {
       uid,
       photoURL,
       email,
