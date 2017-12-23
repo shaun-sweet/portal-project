@@ -53,22 +53,17 @@
           v-on:click="handleGoogleAuth()"
         >
           <i class="fab fa-google-plus-g google-plus-icon"></i>
-          Sign in with Google
+          Sign&nbsp;<span v-if="formType === 'signup'">up </span><span v-else> in </span>&nbsp;with Google
         </button>
         <button
           class="button github-auth"
           v-bind:class="{'is-loading': isLoading}"
           v-on:click="handleGithubAuth()"
         >
-          <!-- <span class="fa-2x"> -->
-            <i class="github-icon fab fa-github"></i>
-          <!-- </span> -->
-          Sign in with GitHub
+          <i class="github-icon fab fa-github"></i>
+          Sign&nbsp;<span v-if="formType === 'signup'">up</span><span v-else>in</span>&nbsp;with GitHub
         </button>
       </div>
-      <!-- <div class="control">
-        <button class="button is-text">Cancel</button>
-      </div> -->
     </div>
 
   </form>
@@ -167,6 +162,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+  button span 
+    display: inline-block
   .submit-btn
     margin-bottom: 0.3em
   .button-container

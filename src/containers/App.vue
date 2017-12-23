@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .app-wrapper
   display: flex
   flex-flow: column
@@ -33,6 +33,7 @@ export default {
   display: flex
   flex: 1
   justify-content: center
+  padding: 1em
 
 .slide-enter
   opacity: 0
