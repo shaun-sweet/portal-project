@@ -1,8 +1,5 @@
 <template>
   <div class="content">
-    <p>
-    this be a signup page!
-    </p>
     <AuthForm :formType="formType"/>
     <p v-if="!isAuthed">Already have an account? <router-link to="/login">Go to Login</router-link></p>
   </div>
