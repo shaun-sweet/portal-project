@@ -35,12 +35,17 @@ jobs:
       - run: yarn run build
  
   deploy_to_prod:
+    docker:
+      - image: circleci/node:8
     working_directory: ~/portal-project
     steps:
       - run: yarn add firebase-tools
       - run: ./node_modules/.bin/firebase use prod
       - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+
   deploy_to_dev:
+  docker:
+      - image: circleci/node:8
     working_directory: ~/portal-project
     steps:
       - run: ./node_modules/.bin/firebase use dev
