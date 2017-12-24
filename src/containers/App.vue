@@ -1,11 +1,13 @@
 <template lang="html">
   <div class="app-wrapper">
-    <Header />
-    <main id="main">
-      <transition name='slide' mode="out-in">
-        <router-view />
-      </transition>
-    </main>
+    <div class="inner-app-wrapper">
+      <Header />
+      <main class="container">
+        <transition name='slide' mode="out-in">
+          <router-view />
+        </transition>
+      </main>
+    </div>
     <Footer />
   </div>
 </template>
@@ -29,18 +31,14 @@ export default {
   flex-flow: column
   height: 100%
 
-#main
-  display: flex
+.inner-app-wrapper
   flex: 1
-  justify-content: center
-  padding: 1em
-
 .slide-enter
   opacity: 0
   transform: translateX(-30px)
 
 .slide-enter-active
-  transition: all .5s ease-in-out
+  transition: all .15s ease-in-out
 
 .slide-leave
   opacity: 1
@@ -49,6 +47,6 @@ export default {
 .slide-leave-active
   opacity: 0
   transform: translateX(30px)
-  transition: all .5s ease-in-out
+  transition: all .15s ease-in-out
 
 </style>

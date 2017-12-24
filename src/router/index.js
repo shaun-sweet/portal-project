@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Signup from '@/pages/Signup'
+import Profile from '@/pages/Profile'
+import Messages from '@/pages/Messages'
+import Projects from '@/pages/Projects'
 import Secret from '@/pages/Secret'
 import { Auth } from '@/firebase'
 
@@ -33,6 +36,21 @@ let router = new Router({
         requiresAuth: true,
       },
     },
+    {
+      path: '/profile',
+      name: 'Home',
+      component: Profile,
+    },
+    {
+      path: '/messages',
+      name: 'Home',
+      component: Messages,
+    },
+    {
+      path: '/projects',
+      name: 'Home',
+      component: Projects,
+    },
   ],
 })
 
@@ -40,10 +58,10 @@ router.beforeEach((to, from, next) => {
   let currentUser = Auth.auth.currentUser
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) {
-    console.log('no user')
+    console.log('no user logged in')
     next('login')
   } else {
-    console.log('no auth required')
+    // no auth required
     next()
   }
 })
