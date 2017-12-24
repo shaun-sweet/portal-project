@@ -55,9 +55,6 @@ jobs:
       - attach_workspace:
           at: /tmp
       - run:
-          name: Debug
-          command: pwd && ls -als && ls -als portal-project
-      - run:
           name: Install firebase CLI
           command: yarn add firebase-tools
       - run:
