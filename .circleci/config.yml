@@ -34,7 +34,7 @@ jobs:
       - persist_to_workspace: 
           root: /tmp
           paths:
-            - portal-project
+            - portal-project/dist
   deploy_to_prod:
     <<: *defaults
     steps:
@@ -48,6 +48,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/portal-project
+      - run: yarn add firebase-tools
       - run: ./node_modules/.bin/firebase use dev
       - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
 
