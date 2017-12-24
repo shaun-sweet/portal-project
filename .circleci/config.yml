@@ -26,13 +26,21 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn
+      - run: 
+          name: Install Deps
+          command: yarn
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn run build
+      - run: 
+          name: Build Project
+          command: yarn run build
+      - persist_to_workspace: 
+          root: /home/circleci
+          paths:
+            - portal-project
   deploy_to_prod:
     docker:
       - image: circleci/node:8
@@ -55,4 +63,20 @@ workflows:
       - build:
           filters:
             branches:
-              only: /^dev/
+              only:
+                - dev
+                - master
+      - deploy_to_prod:
+          requires: 
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_to_dev:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - dev
