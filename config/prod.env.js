@@ -20,5 +20,5 @@ const prodFirebaseConfig = {
 
 module.exports = {
   NODE_ENV: '"production"',
-    firebaseConfig: process.env.DEPLOY_ENV === 'prod' ? prodFirebaseConfig : devFirebaseConfig
+  firebaseConfig: process.env.DEPLOY_ENV === 'prod' ? prodFirebaseConfig : devFirebaseConfig
 }

@@ -1,9 +1,7 @@
 export default () => {
   return {
-    entities: {
-      projects: {},
-      users: {},
-    },
+    projects: {},
+    users: {},
     user: {},
   }
 }
