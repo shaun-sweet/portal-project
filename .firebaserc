@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "portal-project-e7abb"
+    "dev": "portal-project-e7abb",
+    "prod": "portal-project-production"
   }
 }
