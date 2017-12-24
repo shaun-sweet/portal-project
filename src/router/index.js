@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Home from '@/pages/Home'
 import Login from '@/pages/Login'
 import Signup from '@/pages/Signup'
+import Profile from '@/pages/Profile'
+import Messages from '@/pages/Messages'
+import Projects from '@/pages/Projects'
 import Secret from '@/pages/Secret'
 import { Auth } from '@/firebase'
 
@@ -32,6 +35,21 @@ let router = new Router({
       meta: {
         requiresAuth: true,
       },
+    },
+    {
+      path: '/profile',
+      name: 'Home',
+      component: Profile,
+    },
+    {
+      path: '/messages',
+      name: 'Home',
+      component: Messages,
+    },
+    {
+      path: '/projects',
+      name: 'Home',
+      component: Projects,
     },
   ],
 })
