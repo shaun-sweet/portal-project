@@ -34,7 +34,7 @@ jobs:
       - persist_to_workspace: 
           root: /tmp
           paths:
-            - portal-project
+            - portal-project/portal-project
   deploy_to_prod:
     <<: *defaults
     steps:
@@ -56,7 +56,7 @@ jobs:
           at: /tmp/portal-project
       - run:
           name: Debug
-          command: pwd && ls -als
+          command: pwd && ls -als && ls -als portal-project
       - run:
           name: Install firebase CLI
           command: yarn add firebase-tools
