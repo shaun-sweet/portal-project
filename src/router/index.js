@@ -40,10 +40,10 @@ router.beforeEach((to, from, next) => {
   let currentUser = Auth.auth.currentUser
   let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) {
-    console.log('no user')
+    console.log('no user logged in')
     next('login')
   } else {
-    console.log('no auth required')
+    // no auth required
     next()
   }
 })
