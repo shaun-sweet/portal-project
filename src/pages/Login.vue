@@ -1,15 +1,13 @@
 <template>
   <div class="content">
-    <p>
-    this be a login page
-    </p>
     <AuthForm :formType='formType'/>
-    <p>Need an account? <router-link to="/signup">Go to Signup</router-link></p>
+    <p v-if="!isAuthed">Need an account? <router-link to="/signup">Go to Signup</router-link></p>
   </div>
 </template>
 
 <script>
 import AuthForm from '@/components/AuthForm'
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -18,6 +16,11 @@ export default {
   },
   components: {
     AuthForm,
+  },
+  computed: {
+    ...mapGetters([
+      'isAuthed',
+    ]),
   },
 }
 </script>
