@@ -3,7 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 defaults: &defaults
-  working_directory: ~/portal-project 
+  working_directory: /tmp/portal-project 
   docker:
     - image: circleci/node:8
   
@@ -32,14 +32,14 @@ jobs:
           name: Build Project
           command: yarn run build
       - persist_to_workspace: 
-          root: ~
+          root: /tmp
           paths:
             - portal-project
   deploy_to_prod:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/portal-project
+          at: /tmp/portal-project
       - run: yarn add firebase-tools
       - run: ./node_modules/.bin/firebase use prod
       - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
