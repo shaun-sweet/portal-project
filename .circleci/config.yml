@@ -40,17 +40,29 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/portal-project
-      - run: yarn add firebase-tools
-      - run: ./node_modules/.bin/firebase use prod
-      - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+      - run: 
+          name: Install firebase CLI
+          command: yarn add firebase-tools
+      - run: 
+          name: Switch firebase project to prod
+          command: ./node_modules/.bin/firebase use prod
+      - run: 
+          name: Deploy to Firebase (Production)
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
   deploy_to_dev:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/portal-project
-      - run: yarn add firebase-tools
-      - run: ./node_modules/.bin/firebase use dev
-      - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+          at: /tmp/portal-project
+      - run:
+          name: Install firebase CLI
+          command: yarn add firebase-tools
+      - run:
+          name: Switch firebase project to dev
+          command: ./node_modules/.bin/firebase use dev
+      - run:
+          name: Deploy to Firebase (Dev)
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
 
 workflows:
   version: 2
