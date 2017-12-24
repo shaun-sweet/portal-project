@@ -3,7 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 defaults: &defaults
-  working_directory: /tmp
+  working_directory: /tmp/portal-project
   docker:
     - image: circleci/node:8
   
@@ -12,9 +12,6 @@ jobs:
   build:
     <<: *defaults
     steps:
-      - run:
-          name: Make dir
-          command: mkdir -p portal-project && cd portal-project
       - checkout
       # Download and cache dependencies
       - restore_cache:
