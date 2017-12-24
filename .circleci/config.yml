@@ -23,14 +23,10 @@ jobs:
       - run: 
           name: Install Deps
           command: yarn
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: 
-          name: Build Project
-          command: yarn run build
       - persist_to_workspace: 
           root: /tmp
           paths:
@@ -39,10 +35,13 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /tmp/portal-project
+          at: /tmp
       - run: 
           name: Install firebase CLI
           command: yarn add firebase-tools
+      - run: 
+          name: Build project for deploy
+          command: DEPLOY_ENV=prod yarn run build
       - run: 
           name: Switch firebase project to prod
           command: ./node_modules/.bin/firebase use prod
@@ -57,6 +56,9 @@ jobs:
       - run:
           name: Install firebase CLI
           command: yarn add firebase-tools
+      - run: 
+          name: Build project for deploy
+          command: yarn run build
       - run:
           name: Switch firebase project to dev
           command: ./node_modules/.bin/firebase use dev
