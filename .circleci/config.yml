@@ -33,21 +33,23 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn run build
+ 
+  deploy_to_prod:
+    working_directory: ~/portal-project
+    steps:
       - run: yarn add firebase-tools
-      - deploy:
-          name: Deploy Master to Firebase
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              pushd . && cd functions/
-              yarn
-              popd
-              ./node_modules/.bin/firebase use prod
-              ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
-            fi
-      - deploy:
-          name: Deploy Dev to Firebase
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "dev" ]; then
-              ./node_modules/.bin/firebase use dev
-              ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
-            fi
+      - run: ./node_modules/.bin/firebase use prod
+      - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+  deploy_to_dev:
+    working_directory: ~/portal-project
+    steps:
+      - run: ./node_modules/.bin/firebase use dev
+      - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /^dev/
