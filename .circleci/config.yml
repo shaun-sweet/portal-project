@@ -34,7 +34,7 @@ jobs:
       - persist_to_workspace: 
           root: /tmp
           paths:
-            - portal-project/portal-project
+            - portal-project
   deploy_to_prod:
     <<: *defaults
     steps:
