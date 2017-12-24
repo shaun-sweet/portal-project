@@ -53,7 +53,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: /tmp/portal-project/portal-project
+          at: /tmp
       - run:
           name: Debug
           command: pwd && ls -als && ls -als portal-project
