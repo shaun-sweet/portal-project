@@ -37,9 +37,6 @@ jobs:
       - attach_workspace:
           at: /tmp
       - run: 
-          name: Install firebase CLI
-          command: yarn add firebase-tools
-      - run: 
           name: Build project for deploy
           command: DEPLOY_ENV=prod yarn run build
       - run: 
@@ -53,9 +50,6 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp
-      - run:
-          name: Install firebase CLI
-          command: yarn add firebase-tools
       - run: 
           name: Build project for deploy
           command: yarn run build
