@@ -5,6 +5,9 @@ const firebaseConfig = process.env.firebaseConfig
 firebase.initializeApp(firebaseConfig)
 
 // https://vuejs.org/v2/guide/plugins.html
+export const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+export const githubAuthProvider = new firebase.auth.GithubAuthProvider()
+
 export const Firestore = {
   firestore: firebase.firestore(),
   install (Vue, options) {

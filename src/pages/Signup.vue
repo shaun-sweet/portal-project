@@ -1,7 +1,7 @@
 <template>
   <div class="content">
-    <AuthForm :formType='formType'/>
-    <p v-if="!isAuthed">Need an account? <router-link to="/signup">Go to Signup</router-link></p>
+    <AuthForm :formType="formType"/>
+    <p v-if="!isAuthed">Already have an account? <router-link to="/login">Go to Login</router-link></p>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
-      formType: 'login',
+      formType: 'signup',
     }
   },
   components: {

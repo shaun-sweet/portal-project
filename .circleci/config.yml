@@ -2,23 +2,17 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+defaults: &defaults
+  working_directory: /tmp/portal-project
+  docker:
+    - image: circleci/node:8
+  
 version: 2
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/portal-project
-
+    <<: *defaults
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -26,20 +20,73 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn
-
+      - run: 
+          name: Install Deps
+          command: yarn
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: yarn run build
-      - run: yarn add firebase-tools
-      - deploy:
-          name: Deploy Master to Firebase
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              pushd . && cd functions/
-              yarn
-              popd
-              ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive
-            fi
+      - persist_to_workspace: 
+          root: /tmp
+          paths:
+            - portal-project
+  deploy_to_prod:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /tmp
+      - run: 
+          name: Install firebase CLI
+          command: yarn add firebase-tools
+      - run: 
+          name: Build project for deploy
+          command: DEPLOY_ENV=prod yarn run build
+      - run: 
+          name: Switch firebase project to prod
+          command: ./node_modules/.bin/firebase use prod
+      - run: 
+          name: Deploy to Firebase (Production)
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+  deploy_to_dev:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /tmp
+      - run:
+          name: Install firebase CLI
+          command: yarn add firebase-tools
+      - run: 
+          name: Build project for deploy
+          command: yarn run build
+      - run:
+          name: Switch firebase project to dev
+          command: ./node_modules/.bin/firebase use dev
+      - run:
+          name: Deploy to Firebase (Dev)
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - dev
+                - master
+      - deploy_to_prod:
+          requires: 
+            - build
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_to_dev:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - dev
