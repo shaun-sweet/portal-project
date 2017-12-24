@@ -2,23 +2,17 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+defaults: &defaults
+  working_directory: ~/portal-project 
+  docker:
+    - image: circleci/node:8
+  
 version: 2
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/portal-project
-
+    <<: *defaults
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -38,24 +32,25 @@ jobs:
           name: Build Project
           command: yarn run build
       - persist_to_workspace: 
-          root: /home/circleci
+          root: ~
           paths:
             - portal-project
   deploy_to_prod:
-    docker:
-      - image: circleci/node:8
-    working_directory: ~/portal-project
+    <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/portal-project
       - run: yarn add firebase-tools
       - run: ./node_modules/.bin/firebase use prod
       - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
   deploy_to_dev:
-    docker:
-      - image: circleci/node:8
-    working_directory: ~/portal-project
+    <<: *defaults
     steps:
+      - attach_workspace:
+          at: ~/portal-project
       - run: ./node_modules/.bin/firebase use dev
       - run: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
+
 workflows:
   version: 2
   build-n-deploy:
