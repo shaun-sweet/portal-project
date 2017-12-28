@@ -40,8 +40,11 @@ jobs:
           name: Build project for deploy
           command: DEPLOY_ENV=prod yarn run build
       - run: 
+          name: Switch firebase project to prod
+          command: ./node_modules/.bin/firebase use prod
+      - run: 
           name: Deploy to Firebase (Production)
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting -P portal-project-production
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
   deploy_to_dev:
     <<: *defaults
     steps:
@@ -51,8 +54,11 @@ jobs:
           name: Build project for deploy
           command: yarn run build
       - run:
+          name: Switch firebase project to dev
+          command: ./node_modules/.bin/firebase use dev
+      - run:
           name: Deploy to Firebase (Dev)
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting -P portal-project-e7abb
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN --non-interactive --only hosting
 
 workflows:
   version: 2
