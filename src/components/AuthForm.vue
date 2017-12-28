@@ -11,7 +11,8 @@
           class="input"
           v-model="email"
           v-bind:class="{'is-danger': emailErrorMsg}"
-          type="text" id="email"
+          type="text" 
+          id="email"
           placeholder="email"
         >
         <span class="icon is-small is-left">
