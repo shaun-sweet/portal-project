@@ -51,12 +51,12 @@ let router = new Router({
           path: ':id/edit',
           component: ProfileEdit,
           beforeEnter (to, from, next) {
-            const routeId = to.params.id
+            const userId = to.params.id
             const currentUser = Auth.auth.currentUser
-            if (routeId !== currentUser.uid) {
-              next(`/profile/${routeId}`)
+            if (userId !== currentUser.uid) {
+              return next(`/profile/${userId}`)
             } else {
-              next()
+              return next()
             }
           },
         },
@@ -77,13 +77,12 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
   const currentUser = Auth.auth.currentUser
-  let requiresAuth = to.matched.some(record => record.meta.requiresAuth)
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) {
-    console.log('no user logged in')
-    next('login')
+    return next('login')
   } else {
     // no auth required
-    next()
+    return next()
   }
 })
 
