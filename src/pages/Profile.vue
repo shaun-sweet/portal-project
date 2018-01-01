@@ -7,11 +7,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   computed: {
-    currentUser () {
-      return this.$store.getters.currentUser
-    },
+    ...mapGetters([
+      'currentUser',
+    ]),
   },
 }
 </script>

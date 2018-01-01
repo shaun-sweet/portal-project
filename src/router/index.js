@@ -55,9 +55,8 @@ let router = new Router({
             const currentUser = Auth.auth.currentUser
             if (userId !== currentUser.uid) {
               return next(`/profile/${userId}`)
-            } else {
-              return next()
             }
+            return next()
           },
         },
       ],
