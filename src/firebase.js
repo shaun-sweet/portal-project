@@ -8,16 +8,17 @@ firebase.initializeApp(firebaseConfig)
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 export const githubAuthProvider = new firebase.auth.GithubAuthProvider()
 
-export const Firestore = {
-  firestore: firebase.firestore(),
+export const firestore = firebase.firestore()
+export const VueFirestore = {
   install (Vue, options) {
-    Vue.prototype.$firestore = this.firestore
+    Vue.prototype.$firestore = firestore
   },
 }
 
-export const Auth = {
-  auth: firebase.auth(),
+export const auth = firebase.auth()
+export const VueAuth = {
+  auth,
   install (Vue, options) {
-    Vue.prototype.$auth = this.auth
+    Vue.prototype.$auth = auth
   },
 }

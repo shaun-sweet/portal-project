@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './containers/App'
 import store from './store'
 import router from '@/router'
-import { Firestore, Auth } from '@/firebase'
+import { VueFirestore, VueAuth, auth } from '@/firebase'
 import { SAVE_CURRENT_USER, RESET_TO_INITIAL_STATE } from '@/store/mutation-types'
 // import 'firebaseui/dist/firebaseui.css'
 import '@/styles/layout.sass'
@@ -11,8 +11,8 @@ import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
 
-Vue.use(Firestore)
-Vue.use(Auth)
+Vue.use(VueFirestore)
+Vue.use(VueAuth)
 Vue.use(Vuelidate)
 
 /* eslint-disable no-new */
@@ -30,7 +30,7 @@ const renderApp = () => {
   }
 }
 
-Auth.auth.onAuthStateChanged((user) => {
+auth.onAuthStateChanged((user) => {
   if (user) {
     renderApp()
     store.commit(SAVE_CURRENT_USER, user)

@@ -7,8 +7,10 @@ import Profile from '@/pages/Profile'
 import ProfileDetail from '@/pages/ProfileDetail'
 import ProfileEdit from '@/pages/ProfileEdit'
 import Messages from '@/pages/Messages'
-import Projects from '@/pages/Projects'
-import { Auth } from '@/firebase'
+import Projects from '@/containers/Projects'
+import ProjectNew from '@/pages/ProjectNew'
+import ProjectIndex from '@/pages/ProjectIndex'
+import { auth } from '@/firebase'
 
 Vue.use(Router)
 
@@ -43,7 +45,7 @@ let router = new Router({
           component: ProfileEdit,
           beforeEnter (to, from, next) {
             const userId = to.params.id
-            const currentUser = Auth.auth.currentUser
+            const currentUser = auth.currentUser
             if (userId !== currentUser.uid) {
               return next(`/profile/${userId}`)
             }
@@ -59,14 +61,28 @@ let router = new Router({
     },
     {
       path: '/projects',
-      name: 'Home',
+      name: 'Projects',
       component: Projects,
+      children: [
+        { path: '',
+          name: 'ProjectIndex',
+          component: ProjectIndex,
+        },
+        {
+          path: 'new',
+          name: 'ProjectNew',
+          component: ProjectNew,
+          meta: {
+            requiresAuth: true,
+          },
+        },
+      ],
     },
   ],
 })
 
 router.beforeEach((to, from, next) => {
-  const currentUser = Auth.auth.currentUser
+  const currentUser = auth.currentUser
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !currentUser) {
     return next('login')

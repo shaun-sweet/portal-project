@@ -38,4 +38,7 @@ export default {
       Vue.set(state, k, reset[k])
     }
   },
+  [types.SET_PROJECT_LIST] (state, projects) {
+    state.projects = { ...state.projects, ...projects }
+  },
 }

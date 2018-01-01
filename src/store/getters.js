@@ -9,4 +9,8 @@ export default {
     return get(state, 'user', null)
   },
 
+  getProjectList (state) {
+    return state.projects
+  },
+
 }
