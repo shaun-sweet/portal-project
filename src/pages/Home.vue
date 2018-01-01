@@ -11,8 +11,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
-.test 
-  border: 1px solid 
-#ok 
+.test
+  border: 1px solid
+#ok
   color: red
 </style>
