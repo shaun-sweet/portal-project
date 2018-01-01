@@ -8,7 +8,6 @@ import ProfileDetail from '@/pages/ProfileDetail'
 import ProfileEdit from '@/pages/ProfileEdit'
 import Messages from '@/pages/Messages'
 import Projects from '@/pages/Projects'
-import Secret from '@/pages/Secret'
 import { Auth } from '@/firebase'
 
 Vue.use(Router)
@@ -29,14 +28,6 @@ let router = new Router({
       path: '/signup',
       name: 'Signup',
       component: Signup,
-    },
-    {
-      path: '/secret',
-      name: 'Secret',
-      component: Secret,
-      meta: {
-        requiresAuth: true,
-      },
     },
     {
       path: '/profile',
