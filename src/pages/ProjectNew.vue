@@ -53,7 +53,7 @@
       <hr />
 
       <h6>Skills Required</h6>
-      <div class="field">
+      <!-- <div class="field">
         <div class="control">
           <label class="checkbox">
             <input type="checkbox" v-model="skillsRequired.frontEnd">
@@ -78,30 +78,68 @@
             Graphic Artist
           </label>
         </div>
+      </div> -->
+      <div class="field">
+        <div class="control">
+          <multiselect
+            v-model="selectedSkills"
+            :options="skillOptions"
+            :multiple="true"
+            :close-on-select="false"
+            :clear-on-select="false"
+            :hide-selected="true"
+            :preserve-search="true"
+            placeholder="Pick some"
+            label="name"
+            track-by="name"
+          >
+            <template slot="tag" slot-scope="props">
+              <!-- style the tags here -->
+              <span class="custom__tag">
+                <span>{{ props.option.name }}</span>
+                <span
+                  class="custom__remove" @click="props.remove(props.option.name)">❌
+                </span>
+              </span>
+          </template>
+          </multiselect>
+        </div>
       </div>
+
       <button type="submit" class="button is-primary">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
 export default {
   data () {
     return {
       name: '',
       description: '',
       url: '',
-      skillsRequired: {},
+      // skillsRequired: {},
+      selectedSkills: null,
+      skillOptions: [
+        // test data switch to computed model once skills defined
+        { name: 'Front End' },
+        { name: 'Back End' },
+        { name: 'Graphic Artist' },
+      ],
     }
   },
+  components: { Multiselect },
   computed: {
     // get the skills list from firestore
   },
   methods: {
     submitForm () {
       // validate and submit form to firestore via action...
-      const skills = Object.keys(this.skillsRequired)
-        .filter((skill) => this.skillsRequired[skill])
+      // const skills = Object.keys(this.skillsRequired)
+      //   .filter((skill) => this.skillsRequired[skill])
+      const skills = this.selectedSkills.map((skill) => skill.name)
 
       this.$firestore.collection('projects').add({
         name: this.name,
@@ -123,4 +161,5 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+
 </style>

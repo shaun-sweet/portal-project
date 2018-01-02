@@ -69,10 +69,6 @@ let router = new Router({
           name: 'ProjectIndex',
           component: ProjectIndex,
         },
-        { path: ':id',
-          name: 'ProjectDetail',
-          component: ProjectDetail,
-        },
         {
           path: 'new',
           name: 'ProjectNew',
@@ -80,6 +76,10 @@ let router = new Router({
           meta: {
             requiresAuth: true,
           },
+        },
+        { path: ':id',
+          name: 'ProjectDetail',
+          component: ProjectDetail,
         },
       ],
     },
