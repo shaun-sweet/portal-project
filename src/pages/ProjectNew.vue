@@ -106,6 +106,7 @@ export default {
       this.$firestore.collection('projects').add({
         name: this.name,
         description: this.description,
+        createdAt: Date.now(),
         url: this.url,
         skillsRequired: skills,
       })

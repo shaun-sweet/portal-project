@@ -1,18 +1,22 @@
 <template lang="html">
-  <div>
-    <ul v-for="(project, id) in projects">
-      <hr>
-      <li>name: {{project.name}}</li>
-      <li>description: {{project.description}}</li>
-      <li>url: {{project.url}}</li>
-      <li>id: {{id}}</li>
-    </ul>
+  <div class="container columns">
+    <ProjectCard
+      class="project-card column is-one-third-tablet is-one-quarter-desktop"
+      v-for="(project, id) in projects"
+      :project="project"
+      :key="id"
+    />
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import ProjectCard from '@/components/ProjectCard'
+
 export default {
+  components: {
+    ProjectCard,
+  },
   mounted () {
     this.getProjectList()
   },
@@ -30,4 +34,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.project-card
+
+.container
+  flex-wrap: wrap
 </style>
