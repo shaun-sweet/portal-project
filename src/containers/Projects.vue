@@ -15,7 +15,7 @@
         class="button is-primary new-project-link" 
         :to="{ name: 'ProjectNew'}"
       >
-        Create Project
+        List Project
       </router-link>
     </div>
     <router-view></router-view>
