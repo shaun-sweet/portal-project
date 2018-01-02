@@ -19,7 +19,7 @@
       </div>
       <footer class="card-footer">
         <a href="#" class="card-footer-item">Save for later</a>
-        <a href="#" class="card-footer-item">Show Details</a>
+        <router-link class="card-footer-item" :to="{ name: 'ProjectDetail', params: { id: this.id } }">Show Details</router-link>
         <a href="#" class="card-footer-item">Message Owner</a>
       </footer>
     </div>
@@ -30,6 +30,7 @@
 export default {
   props: [
     'project',
+    'id',
   ],
   name: 'project-card',
 }

@@ -10,6 +10,7 @@ import Messages from '@/pages/Messages'
 import Projects from '@/containers/Projects'
 import ProjectNew from '@/pages/ProjectNew'
 import ProjectIndex from '@/pages/ProjectIndex'
+import ProjectDetail from '@/pages/ProjectDetail'
 import { auth } from '@/firebase'
 
 Vue.use(Router)
@@ -67,6 +68,10 @@ let router = new Router({
         { path: '',
           name: 'ProjectIndex',
           component: ProjectIndex,
+        },
+        { path: ':id',
+          name: 'ProjectDetail',
+          component: ProjectDetail,
         },
         {
           path: 'new',

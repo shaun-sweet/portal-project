@@ -12,5 +12,8 @@ export default {
   getProjectList (state) {
     return state.projects
   },
+  getProjectDetails (state) {
+    return (id) => state.projects[id]
+  },
 
 }

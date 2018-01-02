@@ -4,6 +4,7 @@
       class="project-card column is-one-third-tablet is-one-quarter-desktop"
       v-for="(project, id) in projects"
       :project="project"
+      :id="id"
       :key="id"
     />
   </div>
