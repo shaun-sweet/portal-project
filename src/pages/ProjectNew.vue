@@ -95,15 +95,35 @@
           >
             <template slot="tag" slot-scope="props">
               <!-- style the tags here -->
-              <span class="custom__tag">
+              <span class="custom__tag tag is-success">
                 <span>{{ props.option.name }}</span>
                 <span
-                  class="custom__remove" @click="props.remove(props.option.name)">❌
+                  class="custom__remove" @click="props.remove(props.option.name)">
+                  <i class="fa fa-times-circle" aria-hidden="true"></i>
                 </span>
               </span>
           </template>
           </multiselect>
         </div>
+      </div>
+      <div class="field">
+        <label class="label" for="addSkill"></label>
+        <div class="control">
+          <input
+            class="input"
+            v-model="addedSkill"
+            type="text"
+            id="addSkill"
+            placeholder="Add a skill to the list"
+          >
+        </div>
+        <input
+          class="button"
+          type="button"
+          value="Submit Skill"
+          :disabled="!validSkill()"
+          @click="handleSkillSubmit"
+        >
       </div>
 
       <button type="submit" class="button is-primary">Submit</button>
@@ -114,31 +134,34 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
+      addedSkill: '',
       name: '',
       description: '',
       url: '',
-      // skillsRequired: {},
       selectedSkills: null,
-      skillOptions: [
-        // test data switch to computed model once skills defined
-        { name: 'Front End' },
-        { name: 'Back End' },
-        { name: 'Graphic Artist' },
-      ],
     }
   },
   components: { Multiselect },
   computed: {
     // get the skills list from firestore
+    ...mapGetters({
+      skillOptions: 'fetchSkills',
+    }),
+  },
+  mounted () {
+    this.getSkills()
   },
   methods: {
+    ...mapActions([
+      'getSkills',
+      'addSkill',
+    ]),
     submitForm () {
       // validate and submit form to firestore via action...
-      // const skills = Object.keys(this.skillsRequired)
-      //   .filter((skill) => this.skillsRequired[skill])
       const skills = this.selectedSkills.map((skill) => skill.name)
 
       this.$firestore.collection('projects').add({
@@ -155,11 +178,38 @@ export default {
           console.error('Error adding document: ', error)
         })
     },
+    validSkill () {
+      if (this.addedSkill.trim() === '') {
+        return false
+      }
+      const submittedSkill = this.addedSkill.trim().toUpperCase()
+      const matchedSkills = this.skillOptions.filter((skill) => skill.name.toUpperCase() === submittedSkill)
+      return matchedSkills.length === 0
+    },
+    handleSkillSubmit () {
+      this.$firestore.collection('skills').doc(this.addedSkill.toUpperCase()).set({
+        name: this.addedSkill,
+      })
+        .then(() => {
+          console.log('Skill written')
+          this.addSkill({ name: this.addedSkill })
+          this.addedSkill = ''
+        })
+        .catch((error) => {
+          console.error('Error adding document: ', error)
+        })
+    },
 
   },
 }
 </script>
 
 <style lang="sass" scoped>
-
+.multiselect--active
+  z-index: 9999
+.custom__remove
+  margin-left: .5rem
+  cursor: pointer
+.custom__tag
+  margin-right: 5px
 </style>

@@ -1,5 +1,10 @@
 import { firestore } from '@/firebase'
-import { SET_PROJECT_LIST, ADD_PROJECT_TO_STATE } from '@/store/mutation-types'
+import {
+  SET_PROJECT_LIST,
+  ADD_PROJECT_TO_STATE,
+  SET_SKILL_LIST,
+  ADD_SKILL_TO_STATE
+} from '@/store/mutation-types'
 export default {
   getProjectList ({ commit }) {
     firestore.collection('projects').get()
@@ -19,5 +24,18 @@ export default {
 
         commit(ADD_PROJECT_TO_STATE, project)
       })
+  },
+  getSkills ({ commit }) {
+    firestore.collection('skills').get()
+      .then((snap) => {
+        let skills = []
+        snap.docs.forEach((skill) => {
+          skills.push(skill.data())
+        })
+        commit(SET_SKILL_LIST, skills)
+      })
+  },
+  addSkill ({ commit }, skill) {
+    commit(ADD_SKILL_TO_STATE, skill)
   },
 }

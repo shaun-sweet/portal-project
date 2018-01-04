@@ -15,5 +15,8 @@ export default {
   getProjectDetails (state) {
     return (id) => state.projects[id]
   },
+  fetchSkills (state) {
+    return state.skills
+  },
 
 }

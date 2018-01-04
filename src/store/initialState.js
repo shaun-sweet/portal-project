@@ -3,5 +3,6 @@ export default () => {
     projects: {},
     users: {},
     user: {},
+    skills: [],
   }
 }

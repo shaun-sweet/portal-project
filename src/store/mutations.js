@@ -45,4 +45,11 @@ export default {
     // similar to SET_PROJECT_LIST should we get rid of one?
     state.projects = { ...state.projects, ...project }
   },
+  [types.SET_SKILL_LIST] (state, skills) {
+    state.skills = [...state.skills, ...skills]
+  },
+  [types.ADD_SKILL_TO_STATE] (state, skill) {
+    // similar to SET_PROJECT_LIST should we get rid of one?
+    state.skills = [ ...state.skills, skill ]
+  },
 }
