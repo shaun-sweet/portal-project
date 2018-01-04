@@ -22,16 +22,17 @@
       <div class="field">
         <label class="label" for="projectDescription"></label>
         <div class="control has-icons-left has-icons-right">
-          <input
-            class="input"
+          <textarea
+            class="textarea"
             v-model="description"
+            rows="6"
             type="text"
             id="projectDescription"
             placeholder="Project Description"
-          >
-          <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-          </span>
+          ></textarea>
+          <!-- <span class="icon is-small is-left">
+            <i class="fas fa-quote-left"></i>
+          </span> -->
         </div>
       </div>
 
@@ -46,7 +47,7 @@
             placeholder="Project URL"
           >
           <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
+            <i class="fas fa-link"></i>
           </span>
         </div>
       </div>
@@ -108,7 +109,7 @@
       </div>
       <div class="field">
         <label class="label" for="addSkill"></label>
-        <div class="control">
+        <div class="control skill-group">
           <input
             class="input"
             v-model="addedSkill"
@@ -116,17 +117,17 @@
             id="addSkill"
             placeholder="Add a skill to the list"
           >
-        </div>
-        <input
-          class="button"
+          <input
+          class="button is-primary"
           type="button"
           value="Submit Skill"
           :disabled="!validSkill()"
           @click="handleSkillSubmit"
-        >
-      </div>
+          >
+        </div>
+        </div>
 
-      <button type="submit" class="button is-primary">Submit</button>
+      <button type="submit" class="button is-primary">Submit Project</button>
     </form>
   </div>
 </template>
@@ -212,4 +213,10 @@ export default {
   cursor: pointer
 .custom__tag
   margin-right: 5px
+.skill-group
+  display: flex
+  &.input
+    flex: 3
+  &.button
+    flex: 1
 </style>
