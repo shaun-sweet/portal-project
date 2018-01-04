@@ -30,12 +30,12 @@
     "firebase": "^4.8.0",
     "firebaseui": "^2.5.1",
     "vue": "^2.5.2",
+    "vue-multiselect": "^2.0.8",
     "vue-router": "^3.0.1",
     "vuelidate": "^0.6.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
-    "firebase-tools": "^3.16.0",
     "@commitlint/cli": "^5.2.5",
     "@commitlint/config-angular": "^5.1.1",
     "@commitlint/config-conventional": "^5.2.3",
@@ -72,6 +72,7 @@
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.5",
+    "firebase-tools": "^3.16.0",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "http-proxy-middleware": "^0.17.4",
