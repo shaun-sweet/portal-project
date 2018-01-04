@@ -52,4 +52,11 @@ export default {
     // similar to SET_PROJECT_LIST should we get rid of one?
     state.skills = [ ...state.skills, skill ]
   },
+  [types.FILTER_PROJECTS_BY_NAME] (state, nameFilter) {
+    let filteredProjects = Object.keys(state.projects).filter(projectId => {
+      console.log(state.projects[projectId].name.toUpperCase().includes(nameFilter))
+      return state.projects[projectId].name.toUpperCase().includes(nameFilter)
+    })
+    state.filteredProjects = filteredProjects
+  },
 }

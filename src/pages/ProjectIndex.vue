@@ -1,11 +1,11 @@
 <template lang="html">
   <div class="container columns">
     <ProjectCard
-      class="project-card column is-one-third-tablet is-one-quarter-desktop"
-      v-for="(project, id) in projects"
-      :project="project"
-      :id="id"
-      :key="id"
+    class="project-card column is-one-third-tablet is-one-quarter-desktop"
+    v-for="(project, id) in projects"
+    :project="project"
+    :id="id"
+    :key="id"
     />
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      projects: 'getProjectList',
+      projects: 'getFilteredProjectList',
     }),
   },
   methods: {

@@ -3,7 +3,8 @@ import {
   SET_PROJECT_LIST,
   ADD_PROJECT_TO_STATE,
   SET_SKILL_LIST,
-  ADD_SKILL_TO_STATE
+  ADD_SKILL_TO_STATE,
+  FILTER_PROJECTS_BY_NAME
 } from '@/store/mutation-types'
 export default {
   getProjectList ({ commit }) {
@@ -14,6 +15,7 @@ export default {
           projects[project.id] = project.data()
         })
         commit(SET_PROJECT_LIST, projects)
+        commit(FILTER_PROJECTS_BY_NAME, '')
       })
   },
   fetchProject ({ commit }, id) {
@@ -37,5 +39,8 @@ export default {
   },
   addSkill ({ commit }, skill) {
     commit(ADD_SKILL_TO_STATE, skill)
+  },
+  filterByName ({ commit }, nameFilter) {
+    commit(FILTER_PROJECTS_BY_NAME, nameFilter)
   },
 }

@@ -4,5 +4,6 @@ export default () => {
     users: {},
     user: {},
     skills: [],
+    filteredProjects: [],
   }
 }

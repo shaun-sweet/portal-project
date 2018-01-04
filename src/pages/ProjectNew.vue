@@ -151,6 +151,7 @@ export default {
     // get the skills list from firestore
     ...mapGetters({
       skillOptions: 'fetchSkills',
+      currentUser: 'currentUser',
     }),
   },
   mounted () {
@@ -170,6 +171,7 @@ export default {
         description: this.description,
         createdAt: Date.now(),
         url: this.url,
+        owner: this.currentUser.uid,
         skillsRequired: skills,
       })
         .then(function (docRef) {

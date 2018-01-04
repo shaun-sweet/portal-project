@@ -18,5 +18,12 @@ export default {
   fetchSkills (state) {
     return state.skills
   },
+  getFilteredProjectList (state) {
+    let filteredProjects = {}
+    state.filteredProjects.forEach(projectId => {
+      filteredProjects[projectId] = state.projects[projectId]
+    })
+    return filteredProjects
+  },
 
 }
