@@ -16,7 +16,7 @@
             v-model="nameFilter"
             type="text"
             id="projectFilter"
-            @change="filterByName(nameFilter.trim().toUpperCase())"
+            @input="filterByName(nameFilter.trim().toUpperCase())"
             placeholder="Project Name"
           >
           <span class="icon is-small is-left">
