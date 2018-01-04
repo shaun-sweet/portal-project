@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="container">
-    {{project.name || 'Unknown Project'}} Page
+    <h2 class="title is-2">
+      {{project.name || 'Unknown Project'}} Page
+    </h2>
   </div>
 </template>
 
@@ -21,7 +23,6 @@ export default {
   },
   computed: {
     project () {
-      console.log('in computed')
       return this.$store.getters.getProjectDetails(this.id) || {}
     },
   },

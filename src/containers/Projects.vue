@@ -9,7 +9,7 @@
       >
         View Projects
       </router-link>
-      <div class="field">
+      <div class="field" v-if="displayFilter">
         <div class="control has-icons-left has-icons-right">
           <input
             class="input"
@@ -33,7 +33,9 @@
         List Project
       </router-link>
     </div>
-    <router-view></router-view>
+    <transition name='slide' mode="out-in">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -49,6 +51,9 @@ export default {
     ...mapGetters([
       'isAuthed',
     ]),
+    displayFilter () {
+      return this.$route.path === '/projects/'
+    },
   },
   methods: {
     ...mapActions([
@@ -65,4 +70,20 @@ export default {
   display: flex
   .new-project-link
     margin-left: auto
+
+.slide-enter
+  opacity: 0
+  transform: translateX(-30px)
+
+.slide-enter-active
+  transition: all .15s ease-in-out
+
+.slide-leave
+  opacity: 1
+  transform: translateX(0)
+
+.slide-leave-active
+  opacity: 0
+  transform: translateX(30px)
+  transition: all .15s ease-in-out
 </style>
