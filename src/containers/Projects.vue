@@ -20,7 +20,7 @@
             placeholder="Project Name"
           >
           <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
+            <i class="fas fa-filter"></i>
           </span>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default {
       'isAuthed',
     ]),
     displayFilter () {
-      return this.$route.path === '/projects/'
+      return (this.$route.path === '/projects/' || this.$route.path === '/projects')
     },
   },
   methods: {
