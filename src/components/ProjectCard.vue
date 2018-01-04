@@ -1,5 +1,4 @@
 <template lang="html">
-  <transition name='fade' mode="out-in">
     <div class="container">
       <div class="card">
         <header class="card-header">
@@ -25,7 +24,6 @@
         </footer>
       </div>
     </div>
-  </transition>
 </template>
 
 <script>
@@ -39,18 +37,4 @@ export default {
 </script>
 
 <style lang="sass">
-.fade-enter
-  opacity: 0
-
-.fade-enter-active
-  transition: all .2s ease-in-out
-
-.fade-leave
-  opacity: 1
-  transform: scale(1)
-
-.fade-leave-active
-  opacity: 0
-  transform: scale(0)
-  transition: all .2s ease-in-out
 </style>
